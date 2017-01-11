@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
+<rect fill="#ED5565" width="1000" height="1000"/>
+<circle fill="#FFFFFF" cx="500" cy="500" r="500"/>
+<circle fill="#ED5565" cx="500" cy="500" r="450"/>
+<line fill="none" stroke="#ED5565" stroke-width="19" stroke-miterlimit="10" x1="499.5" y1="0" x2="499.5" y2="1000"/>
+<radialGradient id="SVGID_1_" cx="499.5" cy="500" r="360.6245" gradientUnits="userSpaceOnUse">
+	<stop  offset="0" style="stop-color:#FFFFFF"/>
+	<stop  offset="1" style="stop-color:#000000"/>
+</radialGradient>
+<line fill="url(#SVGID_1_)" stroke="#ED5565" stroke-width="19" stroke-miterlimit="10" x1="367.5" y1="7.4" x2="631.5" y2="992.6"/>
+<line fill="none" stroke="#ED5565" stroke-width="19" stroke-miterlimit="10" x1="244.5" y1="58.3" x2="754.5" y2="941.7"/>
+<line fill="none" stroke="#ED5565" stroke-width="19" stroke-miterlimit="10" x1="138.9" y1="139.4" x2="860.1" y2="860.6"/>
+<line fill="none" stroke="#ED5565" stroke-width="19" stroke-miterlimit="10" x1="57.8" y1="245" x2="941.2" y2="755"/>
+<line fill="none" stroke="#ED5565" stroke-width="19" stroke-miterlimit="10" x1="6.9" y1="368" x2="992.1" y2="632"/>
+<line fill="none" stroke="#ED5565" stroke-width="19" stroke-miterlimit="10" x1="-1" y1="500.5" x2="999" y2="500.5"/>
+<line fill="none" stroke="#ED5565" stroke-width="19" stroke-miterlimit="10" x1="6.4" y1="632.5" x2="991.6" y2="368.5"/>
+<line fill="none" stroke="#ED5565" stroke-width="19" stroke-miterlimit="10" x1="57.3" y1="755.5" x2="940.7" y2="245.5"/>
+<line fill="none" stroke="#ED5565" stroke-width="19" stroke-miterlimit="10" x1="138.4" y1="861.1" x2="859.6" y2="139.9"/>
+<line fill="none" stroke="#ED5565" stroke-width="19" stroke-miterlimit="10" x1="244" y1="942.2" x2="754" y2="58.8"/>
+<line fill="none" stroke="#ED5565" stroke-width="19" stroke-miterlimit="10" x1="367" y1="993.1" x2="631" y2="7.9"/>
+<circle fill="none" stroke="#FFFFFF" stroke-width="5" stroke-miterlimit="10" cx="500" cy="500" r="425"/>
+<circle fill="none" stroke="#FFFFFF" stroke-width="5" stroke-miterlimit="10" cx="500" cy="500" r="403.8"/>
+<circle fill="none" stroke="#FFFFFF" stroke-width="5" stroke-miterlimit="10" cx="500" cy="500" r="383.6"/>
+<circle fill="none" stroke="#FFFFFF" stroke-width="5" stroke-miterlimit="10" cx="500" cy="500" r="364.4"/>
+<circle fill="none" stroke="#FFFFFF" stroke-width="5" stroke-miterlimit="10" cx="500" cy="500" r="346.2"/>
+<circle fill="none" stroke="#FFFFFF" stroke-width="30" stroke-miterlimit="10" cx="500" cy="500" r="328.9"/>
+<circle fill="none" stroke="#FFFFFF" stroke-width="10" stroke-miterlimit="10" cx="500" cy="500" r="495"/>
+<circle fill="none" stroke="#FFFFFF" stroke-width="10" stroke-miterlimit="10" cx="500" cy="500" r="450"/>
+</svg>
