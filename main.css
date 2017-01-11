@@ -1,0 +1,88 @@
+body {
+	text-align: center;
+	font-family: "Source Code Pro", monospace;
+	font-size: 15px;
+	opacity: 0; /*hide at start*/
+	padding-bottom: 2em;
+}
+
+h1 {
+	font-size: 2em;
+	margin-bottom: 0;
+}
+
+.plus-minus {
+	display: inline-block;
+	background-color: #ed5565;
+/*	line-height: 1em; Vertically center text in button*/
+	border: none;
+}
+
+input, fieldset, select {
+	border: 1px solid #e1e4e9;
+	margin: 0.2em;
+	border-radius: none !important;
+}
+fieldset {
+	padding: 0.5em;
+	border-width: 2px;
+}
+input[type="number"] {
+	width: 6em;
+	-webkit-appearance: none;
+	-moz-appearance: textfield;
+	border-radius: 0;
+}
+
+
+.irs-bar, .irs-line,.irs-slider, .irs-bar-edge{
+	transform: scaleY(1.2);
+}
+span .irs-single {
+	font-size: 0.9em;
+}
+
+legend {
+	font-size: 1.2em;
+}
+label {
+	margin-left: 2%;
+}
+form {
+	width: 90%;
+	max-width: 1500px;
+	margin: auto;
+}
+
+.group {
+	text-align: center;
+	display: inline;
+}
+#result, table {
+	font-size: 1.2em;
+}
+
+.plus-minus, input[type="number"] {
+	box-sizing: border-box;
+/*	margin: 0.1em auto;*/
+	height: 2em;
+}
+
+#result p {
+	margin: 0.1em;
+	display: inline-block;
+}
+.resName,th,legend {
+	font-weight: 800;
+}
+th {
+	border-bottom: 1px solid black;
+}
+th,td{
+	padding: 0.1em 1em;
+}
+#resTable {
+/*	border: none;*/
+	text-align: left;
+	margin: 0 auto;
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<title>DoF/Hyperfocal calculator</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+	
+	<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.1.6/js/ion.rangeSlider.min.js"></script>
+<!--	<link rel="stylesheet" href="./ion.rangeSlider/css/normalize.css">-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.1.6/css/ion.rangeSlider.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.1.6/css/ion.rangeSlider.skinFlat.min.css">
+	
+<!--
+	<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+	<link rel="icon" href="./favicon.ico" type="image/x-icon">
+-->
+	<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+	<link rel="icon" type="image/png" href="./favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="./favicon-16x16.png" sizes="16x16">
+	<link rel="manifest" href="./manifest.json">
+	<link rel="mask-icon" href="./safari-pinned-tab.svg" color="#ed5565">
+	<link rel="shortcut icon" href="./favicon.ico">
+	<meta name="msapplication-config" content="./browserconfig.xml">
+	<meta name="theme-color" content="#ed5565">
+	
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+<!--	<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">-->
+	<link rel="stylesheet" href="./main.css">
+
+
+</head>
+<body>
+	<h1>DoF/Hyperfocal</h1>
+	<form id="form">
+		<fieldset>
+			<legend for="sensor">Circle of Confusion</legend>
+			<select name="sensor" id="sensor" data-coc="">
+				<option value="ff">Full Frame</option>
+				<option value="apsC">APS-C</option>
+				<option value="apsCC" selected>APS-C (Canon)</option>
+				<option value="four3">(Micro) Four Thirds</option>
+				<option value="manual">Manual</option>
+			</select>
+			
+			<div class="group">
+				<label for="CoC">CoC (mm):</label>
+				<input id="CoC" name="CoC" type="number" min=0.001 max=1 step =0.0000001 value=0.0125087>
+			</div>
+		</fieldset>
+
+		<fieldset>
+			<legend>f-number</legend>
+			<input type="text" id="slider-f"/>
+			<div class="group">
+				<button type="button" class="plus-minus" id="minus-f">-</button>
+				<input type="number" id="input-f" step="0.1" min="0.1" value=5.6>
+				<button type="button" class="plus-minus" id="plus-f">+</button>
+			</div>
+		</fieldset>
+
+		<fieldset>
+			<legend>Focal Length</legend>
+			<input type="text" id="slider-mm"/>
+			<div class="group">
+				<button type="button" class="plus-minus" id="minus-mm">-</button>
+				<input type="number" id="input-mm" step="1" min="1" value=50>
+				<button type="button" class="plus-minus" id="plus-mm">+</button>
+			</div>
+		</fieldset>
+
+		<fieldset>
+			<legend>Focus Distance</legend>
+			<input type="text" id="slider-d"/>
+			<div class="group">
+				<label>meter: </label>
+				<button type="button" class="plus-minus" id="minus-d-m">-</button>
+				<input type="number" id="input-d-m" step="1" min="0" value=11>
+				<button type="button" class="plus-minus" id="plus-d-m">+</button>
+			</div>
+			<div class="group">
+				<label>centi: </label>
+				<button type="button" class="plus-minus" id="minus-d-c">-</button>
+				<input type="number" id="input-d-c" step="1" min="0" max="99" value=40>
+				<button type="button" class="plus-minus" id="plus-d-c">+</button>
+			</div>
+		</fieldset>
+	</form>
+	
+	
+	<table id="resTable">
+		<thead>
+			<tr>
+				<th>Near Focus: </th>
+				<th>Far Focus: </th>
+				<th>DoF: </th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td id="close"></td>
+				<td id="far"></td>
+				<td id="DoF"></td>
+			</tr>
+		</tbody>
+	</table>
+	<div id="result">
+		<p class="resName">Hyperfocal:</p><p id="hyper"></p>
+	</div>
+	
+	<script src = "./main.js"></script>
+	<script src="./UI.js"></script>
+</body>
