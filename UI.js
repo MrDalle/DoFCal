@@ -1,5 +1,9 @@
 //On document load
 $(document).ready(function() {
+	cookiesName = ["CoC", "fNumber", "focalLength", "focusDistance"];
+	getCookies();
+	
+	
 	$sensorSizeChosen.on("change", cocListener);
 	cocListener(); //Set the cocListener to run
 	textInputs = [[$inputF,1], [$inputM,1], [$inputDcm,1], [$inputDm,0], [$inputCoC,0.01]];
@@ -15,10 +19,41 @@ $(document).ready(function() {
 		$plusMinus[i].tabIndex = "-1";
 	}
 	
-	$(document.body)[0].style.opacity = 1; //Show
+	$(document.body)[0].style.opacity = 1; //Make it visible
 });
+
+var cookiesName;
+function setCookies(names, values){
+	if (names.length != values.length) {
+		throw new RangeError("num names != num values");
+	}
+	for (var i = 0; i < names.length; i++) {
+		Cookies.set(names[i], values[i], {expires:7});
+	}
+}
+function getCookies() {
+	var coc = parseFloat(Cookies.get(cookiesName[0]));
+	if (isNumberDefined(coc)) {
+		$("sensor").attr("data-coc",coc);
+	}
+	var fNum = parseFloat(Cookies.get(cookiesName[1]));
+	if (isNumberDefined(fNum)) {
+		updateValues(fNum, $inputF, $sliderF);
+	}
+	var focalLen = parseFloat(Cookies.get(cookiesName[2]));
+	if (isNumberDefined(focalLen)) {
+		updateValues(focalLen, $inputM, $sliderM);
+	}
+	var dist = parseFloat(Cookies.get(cookiesName[3]));
+	if (isNumberDefined(dist)) {
+		updateValuesDist(dist);
+	}
+}
+
+function isNumberDefined(num) {
+	return (num != undefined && !isNaN(num));
 	
-	
+}
 function mmCentiMeter(number) {
 	//debugger;
 	//number in mm
@@ -62,6 +97,7 @@ function calculateAll() {
 	var aperture = parseFloat($inputF.val());
 	var focusDistance = distanceToFloat($inputDm, $inputDcm) * 1000; //m to mm
 	
+	setCookies(cookiesName, [coc, aperture, focalLength, focusDistance]);
 	var closeFocus = nearFocus(focalLength, aperture, coc, focusDistance);
 	var furtherFocus   =  farFocus(focalLength, aperture, coc, focusDistance);
 	var hyperFocalDistance = hyperfocal(focalLength, aperture, coc);
@@ -127,7 +163,10 @@ $inputCoC.on("change keyup paste", function() {
 });
 
 	
-function updateValues(number,input,slider) {
+function updateValues(number,input,slider, update) {
+	if (update == undefined) {
+		update == true;
+	}
 	number = parseFloat(number);
 	if (input.val() != number) {
 		input.val(number); //Hopefully, won't remove a "." in 1. 
@@ -136,7 +175,9 @@ function updateValues(number,input,slider) {
 	instance.update( {
 		from: number
 	});
-	calculateAll();
+	if (update) {
+		calculateAll();
+	}
 }
 
 	function updateValuesDist(value) {
