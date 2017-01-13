@@ -72,18 +72,20 @@ function mmCentiMeter(number) {
 		//Negative Number
 		return "~0";
 	}
-	else if (number < 1) {
-		return roundSigFig(number * 1000, 3, 0) + "μm";
+	number = roundSigFig(number,3,0); //Round now to stop different units but same value. e.g. 10mm, 1cm
+	
+	if (number < 1) {
+		return number * 1000 + "μm";
 	}
 	else if (number < 10) {
-		return roundSigFig(number      , 3, 0) + "mm";
+		return number        + "mm";
 	}
 	else if (number < 1000) {
-		return roundSigFig(number /  10, 3, 0) + "cm";
+		return number /   10 + "cm";
 	}
 	else if (number < 1000000) {
 		//Up to 1km
-		return roundSigFig(number / 1000, 3, 0) + "m";
+		return number / 1000 + "m";
 	}
 	else if (number < 10000000000000) {
 		return "~\u221e"; //Very, very, large
@@ -103,13 +105,23 @@ function calculateAll() {
 	setCookies(cookiesName, [coc, $sensorSizeChosen.val(), aperture, focalLength, focusDistance/1000]);
 	var closeFocus = nearFocus(focalLength, aperture, coc, focusDistance);
 	var furtherFocus   =  farFocus(focalLength, aperture, coc, focusDistance);
-	var hyperFocalDistance = hyperfocal(focalLength, aperture, coc);
-	var depthField = furtherFocus - closeFocus;//depthOfField(focalLength, aperture, coc, focusDistance);
+	var hyperFocalDistance = mmCentiMeter(hyperfocal(focalLength, aperture, coc));
+	var depthField = mmCentiMeter(furtherFocus - closeFocus);//depthOfField(focalLength, aperture, coc, focusDistance);
 	
-	$("#close").text(mmCentiMeter(closeFocus));
-	$("#far").text(mmCentiMeter(furtherFocus));
-	$("#hyper").text(mmCentiMeter(hyperFocalDistance));
-	$("#DoF").text(mmCentiMeter(depthField));
+	//Sometimes, near focus can be greater than far focus
+	if (closeFocus >= furtherFocus) {
+		closeFocus = "~" + mmCentiMeter((closeFocus + furtherFocus)/2); //Get mean, and add a ~ to show it is approximate
+		furtherFocus = closeFocus;
+	}
+	else {
+		closeFocus = mmCentiMeter(closeFocus);
+		furtherFocus = mmCentiMeter(furtherFocus);
+	}
+	
+	$("#close").text(closeFocus);
+	$("#far").text(furtherFocus);
+	$("#hyper").text(hyperFocalDistance);
+	$("#DoF").text(depthField);
 }
 var sensorSizes = {
 	ff: [36,24],
