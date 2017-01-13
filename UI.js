@@ -1,6 +1,6 @@
 //On document load
 $(document).ready(function() {
-	cookiesName = ["CoC", "fNumber", "focalLength", "focusDistance"];
+	cookiesName = ["CoC","SelectCoC", "fNumber", "focalLength", "focusDistance"];
 	getCookies();
 	
 	
@@ -33,18 +33,21 @@ function setCookies(names, values){
 }
 function getCookies() {
 	var coc = parseFloat(Cookies.get(cookiesName[0]));
-	if (isNumberDefined(coc)) {
-		$("sensor").attr("data-coc",coc);
+	var cocType = Cookies.get(cookiesName[1]);
+	if (isNumberDefined(coc) && cocType != undefined) {
+		$("#sensor").val(cocType);
+		$("#sensor").attr("data-coc",coc);
+		$("#CoC").attr("value", coc);
 	}
-	var fNum = parseFloat(Cookies.get(cookiesName[1]));
+	var fNum = parseFloat(Cookies.get(cookiesName[2]));
 	if (isNumberDefined(fNum)) {
-		updateValues(fNum, $inputF, $sliderF);
+		updateValues(fNum, $inputF, $sliderF,false);
 	}
-	var focalLen = parseFloat(Cookies.get(cookiesName[2]));
+	var focalLen = parseFloat(Cookies.get(cookiesName[3]));
 	if (isNumberDefined(focalLen)) {
-		updateValues(focalLen, $inputM, $sliderM);
+		updateValues(focalLen, $inputM, $sliderM,false);
 	}
-	var dist = parseFloat(Cookies.get(cookiesName[3]));
+	var dist = parseFloat(Cookies.get(cookiesName[4]));
 	if (isNumberDefined(dist)) {
 		updateValuesDist(dist);
 	}
@@ -97,7 +100,7 @@ function calculateAll() {
 	var aperture = parseFloat($inputF.val());
 	var focusDistance = distanceToFloat($inputDm, $inputDcm) * 1000; //m to mm
 	
-	setCookies(cookiesName, [coc, aperture, focalLength, focusDistance]);
+	setCookies(cookiesName, [coc, $sensorSizeChosen.val(), aperture, focalLength, focusDistance/1000]);
 	var closeFocus = nearFocus(focalLength, aperture, coc, focusDistance);
 	var furtherFocus   =  farFocus(focalLength, aperture, coc, focusDistance);
 	var hyperFocalDistance = hyperfocal(focalLength, aperture, coc);
@@ -124,7 +127,7 @@ var $inputCoC = $("#CoC");
 	
 function cocBlank() {
 	//If blank value
-	if (parseFloat(isNaN($inputCoC.val()))) {
+	if (isNaN(parseFloat($inputCoC.val()))) {
 		if ($sensorSizeChosen.val() == "Manual") {
 			$sensorSizeChosen.val("apsCC");
 			//Set to aps-c Canon
