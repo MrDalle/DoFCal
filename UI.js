@@ -383,7 +383,11 @@ function distanceToFloat(meter,centi) {
 		//if both are 0. i.e. centi=0, meter then = 0
 		centiNumber = 1;
 	}
-	centiNumber %= 100;//Reduce to below 100
+	//Reduce to below 100 by removing the last digits
+	while (centiNumber >= 100) {
+		centiNumber = Math.floor(centiNumber/10);
+	}
+	//centiNumber %= 100;//Reduce to below 100
 	return meterNumber + centiNumber/100;
 }
 	
