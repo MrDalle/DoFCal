@@ -384,7 +384,7 @@ function distanceToFloat(meter,centi) {
 		centiNumber = 1;
 	}
 	//Reduce to below 100 by removing the last digits
-	while (centiNumber >= 100) {
+	while (centiNumber >= 100 && centiNumber != Number.POSITIVE_INFINITY) {
 		centiNumber = Math.floor(centiNumber/10);
 	}
 	//centiNumber %= 100;//Reduce to below 100
