@@ -228,20 +228,29 @@ var $sliderF = $("#slider-f"),
 	$minusF = $("#minus-f"),
 	$plusF = $("#plus-f");
 	
-	
+function powF(n) {
+	return roundSigFig(0.0003 * n * n, 2, 0);
+}
+function powFInverse(n) {
+	return Math.round(Math.sqrt(n/0.0003));
+}
+
 $sliderF.ionRangeSlider({
 	type: "single",
 	grid: false,
 	step: 0.1,
 	from: $inputF.prop("value"),
-	min: 1,
-	max: 40,
+	min: 50,
+	max: 500,
+	prettify: function(n) {
+		return powF(n)
+	},
 	prefix: "f/",
 	hideMinMax: true,
 	onChange: function (data) {
-		$inputF.val(data.from);
+		$inputF.val(powF(data.from));
 		//Not using updateFValues as it requires the slider instance which is made after this function ends
-		$("#slider-f").data("from",data.from);
+		$("#slider-f").data("from",powF(data.from));
 		calculateAll();
 	}
 });
@@ -262,6 +271,12 @@ $inputF.on("input", function() {
 
 });
 	
+function powM(n) {
+	return Math.floor(0.0006 * n * n)
+}
+function powMInverse(n) {
+	return Math.sqrt(n/0.0006)
+}
 //Focal Length: mm
 var $sliderM = $("#slider-mm"),
 	$inputM = $("#input-mm"),
@@ -272,12 +287,18 @@ $sliderM.ionRangeSlider({
 	grid: false,
 	step: 1,
 	from: $inputM.prop("value"),
-	min: 5,
-	max: 400,
+	min: 100,
+	
+	prettify: function(n) {
+		return powM(n)
+	},
+	
+	
+	max: 1000,
 	postfix: "mm",
 	hideMinMax: true,
 	onChange: function (data) {
-		$inputM.val(data.from);
+		$inputM.val(powM(data.from));
 		calculateAll();
 	}
 });
@@ -312,8 +333,11 @@ $sliderD.ionRangeSlider({
 	grid: false,
 	step: 0.01,
 	from: distanceToFloat($inputDm, $inputDcm),
+	prettify: function(n) {
+		return roundSigFig(0.0003 * n * n,3);
+	},
 	min: 0.01,
-	max: 200,
+	max: 1000,
 	postfix: "m",
 	hideMinMax: true,
 	onChange: function (data) {
